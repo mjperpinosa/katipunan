@@ -66,4 +66,11 @@ def get_projects_tasks(request):
 
     if(account_type == 1):
         projects = Project.objects.filter(creator=sup)
-        
+        for project in projects:
+            projects_data[project] = project.task_set()
+    
+    return JsonResponse(projects_data)
+
+def get_employee_profile(request):
+    employee = request.session["profile"]
+    
