@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'onePinasModel.apps.OnepinasmodelConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,12 +76,18 @@ WSGI_APPLICATION = 'OnePinas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'onePinas',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '192.168.43.15',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql', 
+        # 'NAME': 'onePinas',
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': '192.168.43.15',   # Or an IP Address that your DB is hosted on
+        # 'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'onepinas',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -109,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 
