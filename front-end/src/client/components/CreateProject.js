@@ -3,27 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Navigations from './Navigations';
+import { CREATE_PROJECT } from './Helper';
 
 class CreateProject extends Component {
-	  constructor(props) {
-	    super(props);
-	    this.handleSubmit = this.handleSubmit.bind(this);
-	  }
+	constructor(props) {
+		super(props);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
 
 	async handleSubmit(event) {
-		event.preventDefault();
-		const { title, description } = event.target;
-		const data = await fetch(`http://192.168.43.15:8000/api/create_project?title=${title.value}&description=${description.value}`,
-			{
-				headers: {
-					'Accept': 'application/json',
-      		'Content-Type': 'application/json'
-				}
-			})
-			.then(response => response.json())
-			.then(response => response);
-			// .then(json => json);
-		console.log(data);
+		const data = await CREATE_PROJECT(event);
 	}
 
 	render() {
