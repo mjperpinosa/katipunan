@@ -94,8 +94,8 @@ def start_task(request):
 def create_project(request):
     name = request.GET["title"]
     description = request.GET["description"]
-    p = request.session["profile"]
-    sup = Profile.objects.get(p.id)
+    profile_id = request.GET["id"]
+    sup = Profile.objects.get(profile_id)
 
     project = Project.objects.create(name=name, description=description, creator=sup)
     project.save()
