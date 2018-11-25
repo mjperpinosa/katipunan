@@ -1,0 +1,55 @@
+{
+  "project": "Hello World App Development",
+  "tasks": [
+    {
+      "task_id": "1",
+      "task_name": "Requirements test",
+      "resource": "Requirements",
+      "start_date": "2017-08-01",
+      "end_date": "2017-08-06",
+      "duration": null,
+      "percent_complete": 90,
+      "dependencies": ""
+    },
+    {
+      "task_id": "2",
+      "task_name": "Design Application",
+      "resource": "Design",
+      "start_date": "2017-08-07",
+      "end_date": "2017-08-13",
+      "duration": null,
+      "percent_complete": 85,
+      "dependencies": "1"
+    },
+    {
+      "task_id": "3",
+      "task_name": "Implementation",
+      "resource": "Implementation",
+      "start_date": "2017-08-12",
+      "end_date": "2017-08-20",
+      "duration": null,
+      "percent_complete": 50,
+      "dependencies": "2"
+    },
+    {
+      "task_id": "4",
+      "task_name": "Testing",
+      "resource": "Test",
+      "start_date": "2017-08-21",
+      "end_date": "2017-08-24",
+      "duration": null,
+      "percent_complete": 10,
+      "dependencies": "3"
+    },
+    {
+      "task_id": "5",
+      "task_name": "Maintenance",
+      "resource": "Maintenance",
+      "start_date": "2017-08-24",
+      "end_date": "2017-08-31",
+      "duration": null,
+      "percent_complete": 15,
+      "dependencies": "4"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "deskto-app",
+  "productName": "deskto-app",
+  "version": "0.0.1",
+  "description": "deskto-app",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "~1.6",
+    "promise": "^8.0.1"
+  }
+}

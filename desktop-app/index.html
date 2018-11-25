@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>deskto-app</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="js/fileSystem.js"></script>
+		<script src="js/startPage.js"></script>
+		<script src="js/newProject.js"></script>
+		<script src="js/task.js"></script>
+		<script src="js/modal.js"></script>
+		<script src="js/google-chart.js"></script>
+		<script src="js/alert.js"></script>
+		<script src="js/status.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse bg-inverse">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#"></a>
+
+				<div class="btn-group">
+					<a href="#" class="btn btn-secondary" 
+						title="Add Task" 
+						onclick="showModal()">
+						<i class="fa fa-calendar-plus-o"></i>
+					</a>
+					<a href="#" class="btn btn-secondary" 
+						title="Open Project" 
+						onclick="readFileDialog()">
+						<i class="fa fa-folder-open"></i>
+					</a>
+					<a href="#" class="btn btn-secondary" 
+						title="Refresh Project" 
+						onclick="drawChart();">
+						<i class="fa fa-refresh"></i>
+					</a>
+					<a href="#" class="btn btn-secondary" 
+						title="Undo" 
+						onclick="undo()">
+						<i class="fa fa-reply"></i>
+					</a>
+				</div>
+			</div>			
+		</nav>
+
+		<div id="wrapper">
+			<div id="modalForm">
+
+				<div id="close-modal">
+					<a href="#" class="btn btn-close-modal" onclick="hideModal()">
+						<i class="fa fa-close"></i> 
+					</a>
+					<a href="#" id="deleteTaskBtn" class="btn btn-delete-task" onclick="">
+						<i class="fa fa-trash"></i>
+					</a>
+					<a href="#" id="saveTaskBtn" class="btn btn-add-task" onclick="addTask();hideModal()">
+						New task <i class="fa fa-plus"></i>
+					</a>
+				</div>
+				  <form action="#" id="formTask" style="height:100%;overflow-y:auto">
+				    <div class="form-group">
+				      <input type="text" class="form-control" id="idTask" name="id" hidden>
+				    </div>
+				  	<div class="form-group">
+				  	  <label for="title" id="taskId">Title</label>
+				  	  <textarea class="form-control" id="title" placeholder="Ex: New Task" name="title" required></textarea>
+				  	</div>
+				    <div class="form-group">
+				      <label for="resource">Resource</label>
+				      <input type="text" class="form-control" id="resource" placeholder="Ex: Documentation" name="resource">
+				    </div>
+				    <div class="form-group">
+				      <label for="date">Start Date</label>
+				      <input type="date" class="form-control" id="startdate" placeholder="Enter date" name="date">
+				    </div>
+				    <div class="form-group">
+				      <label for="date">End Date</label>
+				      <input type="date" class="form-control" id="enddate" placeholder="Enter date" name="date">
+				    </div>
+				    <div class="form-group">
+				      <label for="percent_complete">Percent Complete</label>
+				      <input type="number" class="form-control" id="percent_complete" name="percent_complete" step="10" min="0" max="100">
+				    </div> 
+				    <div class="form-group">
+				      <label for="dependencies">Dependencies</label>
+				      <input type="text" class="form-control" id="dependencies" placeholder="Enter dependencies" name="dependencies">
+				    </div>
+				  </form>
+			</div>
+	
+			<div id="emptyConfBtn" class="text-center"></div>
+			<h4 id="projectName" class="text-center"></h4>
+			<div class="row">
+				<div class="col-lg-12 col-md-12" id="scheduler">
+					<div id="chart_div"></div>
+				</div>
+			</div>
+			
+			<footer>
+				<nav class="navbar fixed-bottom navbar-light bg-grey" id="navFooter">
+					<div class="row">
+						<div class="col" id="footer-col-left">   </div>
+						<div class="col" id="footer-col-middle"> </div>
+						<div class="col" id="footer-col-right">  </div>
+					</div>
+				</nav>
+			</footer>
+		</div>		
+	</body>
+</html>
