@@ -23,33 +23,33 @@ class Profile(models.Model):
     philhealth = models.CharField(max_length=1000, null=True)
     tin = models.CharField(max_length=1000, null=True)
     pagibig = models.CharField(max_length=1000, null=True)
-    is_verified = models.IntegerField()
-    is_employed = models.IntegerField()
+    is_verified = models.IntegerField(null=True)
+    is_employed = models.IntegerField(null=True)
 
 class Business(models.Model):
-    name = models.CharField(max_length=1000, null=True)
-    description = models.CharField(max_length=1000, null=True)
-    industry = models.CharField(max_length=1000, null=True)
-    address = models.CharField(max_length=1000, null=True)
-    contact_number = models.CharField(max_length=1000, null=True)
-    email = models.CharField(max_length=1000, null=True)
-    website = models.CharField(max_length=1000, null=True)
-    about = models.CharField(max_length=1000, null=True)
-    mission = models.CharField(max_length=1000, null=True)
-    vision = models.CharField(max_length=1000, null=True)
-    history = models.CharField(max_length=1000, null=True)
-    summary = models.CharField(max_length=1000, null=True)
+    name = models.CharField(max_length=1000, null=True, blank=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
+    industry = models.CharField(max_length=1000, null=True, blank=True)
+    address = models.CharField(max_length=1000, null=True, blank=True)
+    contact_number = models.CharField(max_length=1000, null=True, blank=True)
+    email = models.CharField(max_length=1000, null=True, blank=True)
+    website = models.CharField(max_length=1000, null=True, blank=True)
+    about = models.CharField(max_length=1000, null=True, blank=True)
+    mission = models.CharField(max_length=1000, null=True, blank=True)
+    vision = models.CharField(max_length=1000, null=True, blank=True)
+    history = models.CharField(max_length=1000, null=True, blank=True)
+    summary = models.CharField(max_length=1000, null=True, blank=True)
 
 class Account(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
-    username = models.CharField(max_length=1000, null=True)
-    email = models.CharField(max_length=1000, null=True)
-    password = models.CharField(max_length=1000, null=True)
-    account_type = models.IntegerField()
-    business_id = models.ForeignKey(Business, on_delete=models.SET_NULL, null=True)
-    status = models.IntegerField()
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    username = models.CharField(max_length=1000, null=True, blank=True)
+    email = models.CharField(max_length=1000, null=True, blank=True)
+    password = models.CharField(max_length=1000, null=True, blank=True)
+    account_type = models.IntegerField(null=True, blank=True)
+    business_id = models.ForeignKey(Business, on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.IntegerField(null=True, blank=True)
     date_created = models.DateTimeField(default=datetime.now())
-    is_deleted = models.IntegerField()
+    is_deleted = models.IntegerField(null=True, blank=True)
 
 
 class Job(models.Model):
@@ -82,13 +82,13 @@ class Project(models.Model):
         return self.name
 
 class Task(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
-    task = models.CharField(max_length=1000, null=True, default="")
-    deadline = models.DateField()
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, blank=True)
+    task = models.CharField(max_length=1000, null=True, default="", blank=True)
+    deadline = models.CharField(max_length=20)
     priority_points = models.IntegerField()
-    assignee = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    date_time_start = models.DateTimeField(null=True)
-    date_time_end = models.DateTimeField(null=True)
+    assignee = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True, blank=True)
+    date_time_start = models.DateTimeField(null=True, blank=True)
+    date_time_end = models.DateTimeField(null=True, blank=True)
     status = models.IntegerField()
 
     def __str__(self):
@@ -101,6 +101,11 @@ class Enhancement(models.Model):
 
     def __str__(self):
         return self.enhancement
+
+class Rate(models.Model):
+    employee = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    task = models.ForeignKey(Task, on_delete=models.SET_NULL, null=True, blank=True)
+    rate = models.IntegerField(null=True)
 
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='sender')

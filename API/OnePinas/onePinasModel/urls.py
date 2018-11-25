@@ -13,6 +13,9 @@ urlpatterns = [
     path("api/assign_task_to_employee", views.assign_task_to_employee),
     path("api/get_projects_tasks", views.get_projects_tasks),
     path("api/get_projects", views.get_projects),
-    
+    path("api/view_project", views.get_project_tasks),
+    path("api/sign_up", views.sign_up_supervisor),
+    path("api/rate", views.rate),
+
 
 ]

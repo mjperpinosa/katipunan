@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["10.5.10.90", "192.168.43.15", "localhost", "127.0.0.1"]
 
-
+DATE_INPUT_FORMATS = ['YYYY-MM-DD']
 # Application definition
 
 INSTALLED_APPS = [
