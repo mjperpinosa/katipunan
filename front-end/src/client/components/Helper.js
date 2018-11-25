@@ -51,3 +51,17 @@ export const VIEW_RPOJECT = async (id) => {
 		.then(response => response);
 }
 
+export const SIGN_UP = async (event) => {
+	event.preventDefault();
+	const { username, password, lname, fname } = event.target;
+	return await fetch(`${GET_PROJECTS}/sign_up?username=${username.value}&password=${password.value}&last_name=${lname.value}&first_name=${fname.value}`, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(response => response.json())
+		.then(response => response);
+}
+

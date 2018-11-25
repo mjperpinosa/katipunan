@@ -11,6 +11,7 @@ import Users from './Users';
 import CreateProject from './CreateProject';
 import ViewProjects from './ViewProjects';
 import ViewProject from './ViewProject';
+import SignUp from './SignUp';
 
 class Home extends Component {
 	render() {
@@ -25,7 +26,7 @@ class Home extends Component {
 					<Route path="/login" exact component={Login} />
 					<Route path="/users" exact component={Users} />
 		      <Route path="/" exact component={Dashboard} />
-		      <Route path="/signup" exact component={Dashboard} />
+		      <Route path="/signup" exact component={SignUp} />
 	      </Fragment>
 	  	</Router>
 		);
