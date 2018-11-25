@@ -75,6 +75,7 @@ class Employment(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=1000, null=True)
+    description = models.CharField(max_length=1000, null=True)
     creator = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
@@ -82,11 +83,24 @@ class Project(models.Model):
 
 class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
-    description = models.CharField(max_length=1000, null=True)
+    task = models.CharField(max_length=1000, null=True, default="")
     deadline = models.DateField()
     priority_points = models.IntegerField()
     assignee = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    date_time_start = models.DateTimeField(null=True)
+    date_time_end = models.DateTimeField(null=True)
     status = models.IntegerField()
+
+    def __str__(self):
+        return self.task
+
+class Enhancement(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.SET_NULL, null=True)
+    enhancement = models.CharField(max_length=1000)
+    priority_points = models.IntegerField()
+
+    def __str__(self):
+        return self.enhancement
 
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='sender')

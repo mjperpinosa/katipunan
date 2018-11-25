@@ -10,6 +10,9 @@ from . models import Project
 
 from django.db.models import Q
 
+from datetime import datetime
+import json
+
 # Create your views here.
 
 def login(request):
@@ -47,6 +50,38 @@ def change_task_status(request):
 
     return JsonResponse({"message": "success"})
 
+def start_task(request):
+    task_id = request.GET["task_id"]
+    employee_id = request.session[""]
+
+def create_project(request):
+    name = request.GET["title"]
+    description = request.GET["description"]
+    # p = request.session["profile"]
+    # sup = Profile.objects.get(p.id)
+
+    project = Project.objects.create(name=name, description=description)
+    project.save()
+    data = {"message": "successful"}
+    return JsonResponse(data)
+
+def get_projects(request):
+    projects = Project.objects.all().values()
+    projects = list(projects)
+    return JsonResponse({"projects": projects}, safe=False)
+
+def add_enhancements(request):
+    task_id = request.GET["task_id"]
+
+
+def create_task(request):
+    task = request.GET["task"]
+    deadline = request.GET["deadline"]
+    priority_points = request.GET["priority_points"]
+
+    t = Task.objects.create(task=task, deadline=deadline, priority_points=priority_points)
+    t.save()
+
 def assign_task_to_employee(request):
     task_id = request.GET["task_id"]
     assignee_id = request.GET["employee_id"]
@@ -71,6 +106,7 @@ def get_projects_tasks(request):
     
     return JsonResponse(projects_data)
 
-def get_employee_profile(request):
-    employee = request.session["profile"]
+def get_employee_stats(request):
+    profile = request.session["profile"]
+    employee_id = profile.id
     
