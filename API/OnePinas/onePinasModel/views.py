@@ -94,10 +94,10 @@ def start_task(request):
 def create_project(request):
     name = request.GET["title"]
     description = request.GET["description"]
-    # p = request.session["profile"]
-    # sup = Profile.objects.get(p.id)
+    p = request.session["profile"]
+    sup = Profile.objects.get(p.id)
 
-    project = Project.objects.create(name=name, description=description)
+    project = Project.objects.create(name=name, description=description, creator=sup)
     project.save()
     data = {"message": "successful"}
     return JsonResponse(data)
