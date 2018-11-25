@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Navigations from './Navigations';
-
-const GET_PROJECTS = 'http://192.168.43.15:8000/api/get_projects';
+import { FETCH_PROJECTS } from './Helper';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class ViewProjects extends Component {
 	constructor(props){
@@ -14,15 +14,8 @@ class ViewProjects extends Component {
 		};
 	}
 	async componentDidMount() {
-		await fetch(GET_PROJECTS,
-			{
-				headers: {
-					'Accept': 'application/json',
-      		'Content-Type': 'application/json'
-				}
-			})
-			.then(response => response.json())
-			.then(response => this.setState({ projects: response.projects }));
+		const data = await FETCH_PROJECTS();
+		this.setState({ projects: data.projects });
 	}
 
 	render() {
@@ -37,10 +30,9 @@ class ViewProjects extends Component {
 						<div className="page-widget">
 							<h2 className="page-header">View Projects</h2>
 							{this.state.projects.map((item, key) => {
-								console.log(item);
 								return (
 									<div className="task-list" key={key}>
-										<div className="task-title">{item.name}</div>
+										<div className="task-title"><Link to={`/view-project/${item.id}`} >{item.name}</Link></div>
 										<div className="task-description">
 											{item.description}
 										</div>

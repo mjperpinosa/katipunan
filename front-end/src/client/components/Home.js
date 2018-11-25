@@ -10,6 +10,8 @@ import ViewTask from './ViewTask';
 import Users from './Users';
 import CreateProject from './CreateProject';
 import ViewProjects from './ViewProjects';
+import ViewProject from './ViewProject';
+import SignUp from './SignUp';
 
 class Home extends Component {
 	render() {
@@ -18,12 +20,13 @@ class Home extends Component {
 				<Fragment>
 					<Route path="/create-project" exact component={CreateProject} />
 					<Route path="/view-projects" exact component={ViewProjects} />
-					<Route path="/create-task" exact component={CreateTask} />
+					<Route path="/view-project/:id" exact component={ViewProject} />
+					<Route path="/create-task/:id" exact component={CreateTask} />
 					<Route path="/view-task" exact component={ViewTask} />
 					<Route path="/login" exact component={Login} />
 					<Route path="/users" exact component={Users} />
 		      <Route path="/" exact component={Dashboard} />
-		      <Route path="/signup" exact component={Dashboard} />
+		      <Route path="/signup" exact component={SignUp} />
 	      </Fragment>
 	  	</Router>
 		);
