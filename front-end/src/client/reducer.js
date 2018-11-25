@@ -1,22 +1,19 @@
 const initialState = {
-	windowHeight: 500,
-	windowWidth: 500,
-	scrollTop: 0,
+	user: {},
 };
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-	case 'WINDOW_RESIZE':
+	case 'LOGIN':
 		return {
 			...state,
-			windowWidth: action.width,
-			windowHeight: action.height,
+			user: action.user
 		};
 
-	case 'WINDOW_SCROLL':
+	case 'LOGOUT':
 		return {
 			...state,
-			scrollTop: action.scrollTop,
+			user: {},
 		};
 
 	default:

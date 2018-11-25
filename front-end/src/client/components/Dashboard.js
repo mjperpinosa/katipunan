@@ -8,6 +8,14 @@ import ViewTask from './ViewTask';
 import Navigations from './Navigations';
 
 class Dashboard extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	componentDidMount() {
+		console.log(this.props.user);
+	}
+
 	render() {
 		return (
 			<div id="dashboard">
@@ -29,7 +37,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-	// windowHeight: state.windowHeight,
+	user: state.user,
 });
 
 const mapDispatchToProps = dispatch => (

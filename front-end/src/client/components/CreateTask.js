@@ -14,7 +14,7 @@ class CreateTask extends Component {
 	async handleSubmit(event) {
 		const { id } = this.props.match.params;
 		const data = await CREATE_TASK(event, id);
-		console.log(data);
+		window.location = `/view-project/${id}`;
 	}
 
 	render() {

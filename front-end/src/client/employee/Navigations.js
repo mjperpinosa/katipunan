@@ -13,10 +13,10 @@ class Navigation extends Component {
 			<Fragment>
 				<div style={{ padding: '20px', paddingBottom: '10px', fontFamily: 'oswald', fontWeight: '400', color: '#eee' }}>Hi! {user.username}</div>
 				<ul className="no-ul">
-					<li><Link to="/" className={pathname === '/' ? 'active' : ''}><i className="fa fa-home"></i>Home</Link></li>
-					<li><Link to="/create-project"className={pathname === '/create-project' ? 'active' : ''}><i className="fa fa-tasks"></i>Create Project</Link></li>
-					<li><Link to="/view-projects" className={pathname === '/view-projects' ? 'active' : ''}><i className="fa fa-tasks"></i>View Projects</Link></li>
-					<li><Link to="/users" className={pathname === '/users' ? 'active' : ''}><i className="fa fa-users"></i>Users</Link></li>
+					<li><Link to="/employee/" className={pathname === '/' ? 'active' : ''}><i className="fa fa-home"></i>Home</Link></li>
+					<li><Link to="/employee/create-project"className={pathname === '/create-project' ? 'active' : ''}><i className="fa fa-tasks"></i>Create Project</Link></li>
+					<li><Link to="/employee/view-projects" className={pathname === '/view-projects' ? 'active' : ''}><i className="fa fa-tasks"></i>View Projects</Link></li>
+					<li><Link to="/employee/users" className={pathname === '/users' ? 'active' : ''}><i className="fa fa-users"></i>Users</Link></li>
 					<li><Link
 						to="/login"
 						className={pathname === '/login' ? 'active' : ''}

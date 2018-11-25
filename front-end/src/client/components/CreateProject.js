@@ -12,7 +12,9 @@ class CreateProject extends Component {
 	}
 
 	async handleSubmit(event) {
-		const data = await CREATE_PROJECT(event);
+		event.preventDefault();
+		const data = await CREATE_PROJECT(event, this.props.user.profile);
+		window.location = '/create-project';
 	}
 
 	render() {
@@ -42,7 +44,7 @@ class CreateProject extends Component {
 }
 
 const mapStateToProps = state => ({
-	// windowHeight: state.windowHeight,
+	user: state.user,
 });
 
 const mapDispatchToProps = dispatch => (
