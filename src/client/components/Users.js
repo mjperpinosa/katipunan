@@ -12,7 +12,7 @@ class Users extends Component {
 		return (
 			<div id="dashboard">
 				<div className="left-content">
-					<Navigations />
+					<Navigations location={this.props.location} />
 				</div>
 				<div className="right-content">
 					<div className="min-header"></div>

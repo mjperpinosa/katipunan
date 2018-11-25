@@ -9,14 +9,20 @@ class CreateTask extends Component {
 		return (
 			<div id="dashboard">
 				<div className="left-content">
-					<Navigations />
+					<Navigations location={this.props.location} />
 				</div>
 				<div className="right-content">
 					<div className="min-header"></div>
 					<div className="right-inner-wrapper">
-						<h2 className="page-header">Create Task</h2>
 						<div className="page-widget">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit atque provident a porro, culpa cumque iure illo commodi magni minima libero tempora praesentium alias assumenda quo nulla officiis, esse odit?
+							<h2 className="page-header">Create Task</h2>
+							<form className="form-create-project">
+								<div className="form-label">Task Title</div>
+								<input type="text"/>
+								<div className="form-label">Task Description</div>
+								<textarea name="pdescription" id="" cols="30" rows="10"></textarea>
+								<button type="submit">Create Task</button>
+							</form>
 						</div>
 					</div>
 				</div>

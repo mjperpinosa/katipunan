@@ -8,12 +8,16 @@ import Login from './Login';
 import CreateTask from './CreateTask';
 import ViewTask from './ViewTask';
 import Users from './Users';
+import CreateProject from './CreateProject';
+import ViewProjects from './ViewProjects';
 
 class Home extends Component {
 	render() {
 		return (
 			<Router>
 				<Fragment>
+					<Route path="/create-project" exact component={CreateProject} />
+					<Route path="/view-projects" exact component={ViewProjects} />
 					<Route path="/create-task" exact component={CreateTask} />
 					<Route path="/view-task" exact component={ViewTask} />
 					<Route path="/login" exact component={Login} />
