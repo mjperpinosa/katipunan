@@ -18,6 +18,9 @@ from django.core import serializers
 
 # Create your views here.
 
+def index(request):
+    return render(request, "dist/index.html")
+
 def login(request):
     data = {}
     data["message"] = "unsuccessful"
@@ -29,10 +32,12 @@ def login(request):
         account_type = account[0].account_type
         
         profile = Profile.objects.filter(id=account[0].profile.id)
+
         profile = serializers.serialize("json", profile)
         request.session["profile"] = profile
         account = serializers.serialize("json", account)
         request.session["account"] = account
+
 
         data["account"] = account
         data["profile"] = profile
@@ -43,6 +48,28 @@ def login(request):
     
     return JsonResponse(data)
 
+def get_employee_rating(request):
+    employee_id = request.GET["employee_id"]
+    employee = Profile.objects.get(id=employee_id)
+    tasks = Task.objects.filter(assignee=employee)
+    t_done = 0
+    rating_sum = 0
+    ave = "0"
+    if tasks.count() > 0:
+        for task in tasks:
+            if task.status == 2:
+                if task.rating is not None:
+                    t_done += 1
+                    rating_sum += (task.rating*20)
+        if t_done > 0:
+            ave = rating_sum / t_done
+    data = {}
+    data["rating_percentage"] = ave
+    data["tasks_done"] = t_done
+    data["num_tasks"] = tasks.count()
+
+    return JsonResponse(data)
+
 def logout(request):
     del request.session["profile"]
     del request.session["account"]
@@ -50,30 +77,19 @@ def logout(request):
     return JsonResponse({"message": "successfully logout"})
 
 def rate(request):
-    sup_id = request.session["profile"].id
-    employee_id = request.GET("employee_id")
-    employee = Profile.objects.get(id=employee_id)
-    task_id = request.GET("task_id")
+    # sup_id = request.session["profile"].id
+    # employee_id = request.GET("employee_id")
+    # employee = Profile.objects.get(id=employee_id)
+    task_id = request.GET["task_id"]
+    rating = request.GET["rate"]
+
     task = Task.objects.get(id=task_id)
-    rating = request.GET("rate")
 
-    rate = Rating.objects.create(employee=employee, task=task, rate=rating)
-    rate.save()
+    # rate = Rating.objects.create(employee=employee, task=task, rate=rating)
+    task.rating = rating
+    task.save()
 
-    data = {"message": "successful"}
-    return JsonResponse(data)
-
-def get_employee_rating(request):
-    employee_id = request.GET["employee_id"]
-
-    ratings = Rate.objects.filter(employee=employee_id)
-    length = ratings.count()
-    rating_sum = 0
-    for rating in ratings:
-        rating_sum += int(rating.rate)
-    ave = rating_sum / length
-    data = {"ave_rate": ave}
-
+    data = {"message": "successful", "rating": rating}
     return JsonResponse(data)
 
 

@@ -3,10 +3,12 @@ from . import views
 
 urlpatterns = [
     path("api/login", views.login),
+    path("1Pinas/", views.index, name="index"),
     path("api/get_employee_tasks", views.get_employee_tasks),
     path("api/change_task_status", views.change_task_status),
     path("api/change_task_status", views.change_task_status),
     path("api/change_task_status", views.change_task_status),
+    path("api/user_rating", views.get_employee_rating),
 
     path("api/logout", views.logout),
 

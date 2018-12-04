@@ -55,8 +55,8 @@ class Account(models.Model):
     date_created = models.DateTimeField(default=datetime.now())
     is_deleted = models.IntegerField(null=True, blank=True)
 
-    def __str__(self):
-        return self.username
+    # def __str__(self):
+    #     return self.username
 
 class Company(models.Model):
     supervisor = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name="supervisor")    
@@ -97,6 +97,7 @@ class Task(models.Model):
     deadline = models.CharField(max_length=20)
     priority_points = models.IntegerField()
     assignee = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    rating = models.IntegerField(null=True, blank=True)
     date_time_start = models.DateTimeField(null=True, blank=True)
     date_time_end = models.DateTimeField(null=True, blank=True)
     status = models.IntegerField()

@@ -16,8 +16,6 @@ from datetime import datetime
 import json
 from django.core import serializers
 
-# Create your views here.
-
 def login(request):
     data = {}
     data["message"] = "unsuccessful"
