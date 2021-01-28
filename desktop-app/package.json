@@ -8,7 +8,7 @@
     "start": "electron ."
   },
   "dependencies": {
-    "electron": "~1.6",
+    "electron": "~9.4",
     "promise": "^8.0.1"
   }
 }
